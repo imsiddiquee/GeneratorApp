@@ -40,6 +40,8 @@ namespace GeneratorApp
                     sw.WriteLine("public bool? IsActive{ get; set; }");
                     sw.WriteLine("public bool? IsDefault{ get; set; }");
 
+                    sw.WriteLine("");
+
                     sw.WriteLine("public " + modelName + "Dto ()");
                     sw.WriteLine("{");
                     sw.WriteLine("IsActive = false;");
