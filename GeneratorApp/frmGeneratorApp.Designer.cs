@@ -53,7 +53,7 @@
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(358, 20);
             this.txtFilePath.TabIndex = 1;
-            this.txtFilePath.Text = "G:\\Gene";
+            this.txtFilePath.Text = "D:\\Test";
             // 
             // txtModel
             // 
