@@ -75,6 +75,11 @@ namespace GeneratorApp
                     sw.WriteLine("_" + modelName.ToLower() + "Repository.Delete(_objectMapper.Map<Entities.Setup." + modelName + ">(" + modelName.ToLower() + "));");
                     sw.WriteLine("}");
 
+                    sw.WriteLine("public void Delete(int id)");
+                    sw.WriteLine("{");
+                    sw.WriteLine("_" + modelName.ToLower() + "Repository.Delete(id);");
+                    sw.WriteLine("}");
+
                     sw.WriteLine("}");
                     sw.WriteLine("}");
 

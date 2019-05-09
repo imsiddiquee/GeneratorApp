@@ -33,6 +33,7 @@ namespace GeneratorApp
                     sw.WriteLine(""+modelName+"Dto Create("+modelName+"Dto "+modelName.ToLower()+");");
                     sw.WriteLine(""+modelName+"Dto Update("+modelName+"Dto "+modelName.ToLower()+");");
                     sw.WriteLine("void Delete("+modelName+"Dto country);");
+                    sw.WriteLine("void Delete(int id);");
                     sw.WriteLine("}");
                     sw.WriteLine("}");
 

@@ -22,8 +22,6 @@ namespace GeneratorApp
                     sw.WriteLine("using System;");
                     sw.WriteLine("using System.Linq;");
                     sw.WriteLine("using HRIS.Controllers;");
-                    sw.WriteLine("using HRIS.Setup.Country;");
-                    sw.WriteLine("using HRIS.Setup.Country.Dto;");
                     sw.WriteLine("using Microsoft.AspNetCore.Http;");
                     sw.WriteLine("using Microsoft.AspNetCore.Mvc;");
                     sw.WriteLine("");
@@ -129,6 +127,7 @@ namespace GeneratorApp
                     sw.WriteLine("}");
                     sw.WriteLine("}");
                     sw.WriteLine("");
+
                     sw.WriteLine("[HttpDelete]");
                     sw.WriteLine("public IActionResult Delete([FromBody] " + modelName + "Dto " + modelName.ToLower() + ")");
                     sw.WriteLine("{");
@@ -152,6 +151,31 @@ namespace GeneratorApp
                     sw.WriteLine("return StatusCode(StatusCodes.Status500InternalServerError);");
                     sw.WriteLine("}");
                     sw.WriteLine("}");
+
+                    sw.WriteLine("[HttpDelete]");
+                    sw.WriteLine("public IActionResult Delete(int? id)");
+                    sw.WriteLine("{");
+                    sw.WriteLine("if (!id.HasValue)");
+                    sw.WriteLine("{");
+                    sw.WriteLine("Logger.Error(\"ERROR: BadRequest: Id is empty or null\");");
+                    sw.WriteLine("return BadRequest(\"Id is empty or null\");");
+                    sw.WriteLine("}");
+                    sw.WriteLine("");
+                    sw.WriteLine("try");
+                    sw.WriteLine("{");
+                    sw.WriteLine("_" + modelName.ToLower() + "AppService.Delete(id.Value);");
+                    sw.WriteLine("return Ok(true);");
+                    sw.WriteLine("}");
+                    sw.WriteLine("catch (Exception ex)");
+                    sw.WriteLine("{");
+                    sw.WriteLine("Logger.Error(\"ERROR: [" + modelName + "Controller] -[Delete_ID]: ExceptionMessage: \" + ex.Message +");
+                    sw.WriteLine("\", InnerException: \" + ex.InnerException +");
+                    sw.WriteLine("\", StackTrace:\" + ex.StackTrace);");
+                    sw.WriteLine("");
+                    sw.WriteLine("return StatusCode(StatusCodes.Status500InternalServerError);");
+                    sw.WriteLine("}");
+                    sw.WriteLine("}");
+
                     sw.WriteLine("}");
                     sw.WriteLine("}");
                 }
