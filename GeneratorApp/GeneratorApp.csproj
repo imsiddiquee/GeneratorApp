@@ -51,6 +51,11 @@
     <Compile Include="frmGeneratorApp.Designer.cs">
       <DependentUpon>frmGeneratorApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateAppService.cs" />
+    <Compile Include="GenerateController.cs" />
+    <Compile Include="GenerateDto.cs" />
+    <Compile Include="GenerateIAppService.cs" />
+    <Compile Include="GenerateModel.cs" />
     <Compile Include="ModelProperty.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
