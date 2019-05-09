@@ -31,7 +31,7 @@ namespace GeneratorApp
                     sw.WriteLine("{");
                     sw.WriteLine("");
 
-                    sw.WriteLine("public class " + modelName + " : FullAuditedEntity<int>, IMustHaveTenant, IHasIsActive");
+                    sw.WriteLine("public class " + modelName + " : FullAuditedEntity<int>, IMustHaveTenant, IHasIsActive, IHasIsDefault");
                     sw.WriteLine("{");                    
 
                     foreach (var item in modelProperties)
@@ -41,6 +41,9 @@ namespace GeneratorApp
 
                     sw.WriteLine("public int TenantId { get; set; }");
                     sw.WriteLine("public bool? IsActive { get; set; }");
+                    sw.WriteLine("public bool? IsDefault { get; set; }");
+                    sw.WriteLine("public int? CompanyId {get; set; }");
+
                     sw.WriteLine("}");
 
 

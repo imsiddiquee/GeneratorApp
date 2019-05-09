@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/GeneratorApp/v15
+/GeneratorApp/bin/Debug
+/GeneratorApp/obj/Debug
