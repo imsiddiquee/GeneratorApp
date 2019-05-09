@@ -42,7 +42,7 @@ namespace GeneratorApp
                     sw.WriteLine("public " + modelName + "Dto Create(" + modelName + "Dto " + modelName.ToLower() + ")");
                     sw.WriteLine("{");
                     sw.WriteLine("var " + modelName.ToLower() + "Obj = _objectMapper.Map<Entities.Setup." + modelName + ">(" + modelName.ToLower() + ");");
-                    sw.WriteLine("" + modelName.ToLower() + "Obj.TenantId = 4;");
+                    sw.WriteLine("" + modelName.ToLower() + "Obj.TenantId = 2;");
                     sw.WriteLine("return _objectMapper.Map<" + modelName + "Dto>(_" + modelName.ToLower() + "Repository.Insert(" + modelName.ToLower() + "Obj));");
                     sw.WriteLine("}");
                     sw.WriteLine("");
