@@ -153,7 +153,7 @@ namespace GeneratorApp
                     sw.WriteLine("}");
 
                     sw.WriteLine("[HttpDelete]");
-                    sw.WriteLine("public IActionResult Delete(int? id)");
+                    sw.WriteLine("public IActionResult DeleteById(int? id)");
                     sw.WriteLine("{");
                     sw.WriteLine("if (!id.HasValue)");
                     sw.WriteLine("{");
@@ -163,7 +163,7 @@ namespace GeneratorApp
                     sw.WriteLine("");
                     sw.WriteLine("try");
                     sw.WriteLine("{");
-                    sw.WriteLine("_" + modelName.ToLower() + "AppService.Delete(id.Value);");
+                    sw.WriteLine("_" + modelName.ToLower() + "AppService.DeleteById(id.Value);");
                     sw.WriteLine("return Ok(true);");
                     sw.WriteLine("}");
                     sw.WriteLine("catch (Exception ex)");
