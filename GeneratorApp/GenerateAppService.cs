@@ -23,9 +23,14 @@ namespace GeneratorApp
                     sw.WriteLine("using Abp.Application.Services;");
                     sw.WriteLine("using Abp.Domain.Repositories;");
                     sw.WriteLine("using Abp.ObjectMapping;");
-                    sw.WriteLine("using HRIS.Setup.Country.Dto;");
                     sw.WriteLine("using System.Collections.Generic;");
                     sw.WriteLine("using System.Linq;");
+                    sw.WriteLine("using HRIS.Extensions;");
+                    sw.WriteLine("using HRIS.WebQueryModel;");
+                    sw.WriteLine("using Microsoft.EntityFrameworkCore;");
+                    sw.WriteLine("using System;");
+                    sw.WriteLine("using System.Linq.Expressions;");
+                    sw.WriteLine("using System.Threading.Tasks;");
                     sw.WriteLine("");
 
                     sw.WriteLine("namespace HRIS.Setup." + modelName + "");
