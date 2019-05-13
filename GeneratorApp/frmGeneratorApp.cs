@@ -40,7 +40,7 @@ namespace GeneratorApp
             new GenerateModel().CreateModel(fileName+"\\"+txtModelName.Text+".cs",txtModelName.Text,_modelProperties);
             new GenerateDto().CreateDto(fileName+"\\"+txtModelName.Text+"Dto.cs",txtModelName.Text,_modelProperties);
             new GenerateIAppService().CreateIAppService(fileName+"\\I"+txtModelName.Text+"AppService.cs",txtModelName.Text);
-            new GenerateAppService().CreateAppService(fileName+"\\"+txtModelName.Text+"AppService.cs",txtModelName.Text);
+            new GenerateAppService().CreateAppService(fileName+"\\"+txtModelName.Text+"AppService.cs",txtModelName.Text, _modelProperties);
             new GenerateController().CreateController(fileName+"\\"+txtModelName.Text+ "Controller.cs",txtModelName.Text);
         }
         

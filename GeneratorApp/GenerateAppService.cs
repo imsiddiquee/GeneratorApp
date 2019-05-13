@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace GeneratorApp
 {
     public class GenerateAppService
     {
-        public void CreateAppService(string fileName,string modelName)
+        public void CreateAppService(string fileName, string modelName, IEnumerable<ModelProperty> modelProperties)
         {
             try
             {
@@ -27,16 +28,16 @@ namespace GeneratorApp
                     sw.WriteLine("using System.Linq;");
                     sw.WriteLine("");
 
-                    sw.WriteLine("namespace HRIS.Setup."+modelName+"");
+                    sw.WriteLine("namespace HRIS.Setup." + modelName + "");
                     sw.WriteLine("{");
 
                     sw.WriteLine("[RemoteService(false)]");
-                    sw.WriteLine("public class "+ modelName + "AppService : ApplicationService, I"+ modelName + "AppService");
+                    sw.WriteLine("public class " + modelName + "AppService : ApplicationService, I" + modelName + "AppService");
                     sw.WriteLine("{");
 
 
                     sw.WriteLine("private readonly IObjectMapper _objectMapper;");
-                    sw.WriteLine("private  readonly IRepository<Entities.Setup."+ modelName + "> _" + modelName.ToLower() + "Repository;");
+                    sw.WriteLine("private  readonly IRepository<Entities.Setup." + modelName + "> _" + modelName.ToLower() + "Repository;");
                     sw.WriteLine("");
                     sw.WriteLine("public " + modelName + "AppService(IObjectMapper objectMapper,IRepository<Entities.Setup." + modelName + "> " + modelName.ToLower() + "Repository)");
                     sw.WriteLine("{");
@@ -65,7 +66,7 @@ namespace GeneratorApp
 
                     sw.WriteLine("");
 
-                    sw.WriteLine("public async Task<IEnumerable<" + modelName + "Dto>> GetAll(IQueryObject queryObject)");
+                    sw.WriteLine("public async Task<QueryResult<" + modelName + "Dto>> GetAll(IQueryObject queryObject)");
                     sw.WriteLine("{");
                     sw.WriteLine("var query = _" + modelName.ToLower() + "Repository");
                     sw.WriteLine(".GetAll()");
@@ -73,12 +74,22 @@ namespace GeneratorApp
                     sw.WriteLine("");
                     sw.WriteLine("var columnsMap = new Dictionary<string, Expression<Func<Entities.Setup." + modelName + ", object>>>");
                     sw.WriteLine("{");
-                    sw.WriteLine("[\"Name\"] = v => v.Name,");
-                    sw.WriteLine("[\"Code\"] = v => v.Code,");
+                    foreach (var item in modelProperties)
+                    {
+                        sw.WriteLine("[\"" + item.PropertyName + "\"] = v => v." + item.PropertyName + ",");
+                    }
                     sw.WriteLine("};");
+
                     sw.WriteLine("query = query.ApplyOrdering(queryObject, columnsMap);");
-                    sw.WriteLine("var result = await query.ApplyPaging(queryObject).ToListAsync();");
-                    sw.WriteLine("return _objectMapper.Map<IEnumerable<" + modelName + "Dto>>(result);");
+                    sw.WriteLine("");
+                    sw.WriteLine("result.TotalItems = await query.CountAsync();");
+                    sw.WriteLine("");
+                    sw.WriteLine("query = query.ApplyPaging(queryObject);");
+                    sw.WriteLine("");
+                    sw.WriteLine("result.Items = _objectMapper.Map<IEnumerable<" + modelName + "Dto>>(await query.ToListAsync());");
+                    sw.WriteLine("");
+                    sw.WriteLine("return result;");
+
                     sw.WriteLine("}");
 
                     sw.WriteLine("");

@@ -32,7 +32,8 @@ namespace GeneratorApp
                     sw.WriteLine("{");
 
                     sw.WriteLine("Task<"+modelName+"Dto> GetById(int id);");
-                    sw.WriteLine("Task<IEnumerable<" + modelName+ "Dto>> GetAll(IQueryObject queryObject);");
+
+                    sw.WriteLine("Task<QueryResult<"+ modelName + "Dto>> GetAll(IQueryObject queryObject);");
                     sw.WriteLine("Task<"+modelName+"Dto> Create("+modelName+"Dto "+modelName.ToLower()+");");
                     sw.WriteLine("Task<"+modelName+"Dto> Update("+modelName+"Dto "+modelName.ToLower()+");");
                     //sw.WriteLine("void Delete("+modelName+"Dto "+ modelName + ");");
