@@ -50,7 +50,7 @@ namespace GeneratorApp
                     sw.WriteLine("{");
                     sw.WriteLine("var " + modelName.ToLower() + "Obj = _objectMapper.Map<Entities.Setup." + modelName + ">(" + modelName.ToLower() + ");");
                     sw.WriteLine("" + modelName.ToLower() + "Obj.TenantId = 2;");
-                    sw.WriteLine("return _objectMapper.Map<" + modelName + "Dto>(await _" + modelName.ToLower() + "Repository.Insert(" + modelName.ToLower() + "Obj));");
+                    sw.WriteLine("return _objectMapper.Map<" + modelName + "Dto>(await _" + modelName.ToLower() + "Repository.InsertAsync(" + modelName.ToLower() + "Obj));");
                     sw.WriteLine("}");
 
                     sw.WriteLine("");
@@ -68,6 +68,7 @@ namespace GeneratorApp
 
                     sw.WriteLine("public async Task<QueryResult<" + modelName + "Dto>> GetAll(IQueryObject queryObject)");
                     sw.WriteLine("{");
+                    sw.WriteLine("var result = new QueryResult<" + modelName + "Dto>();");
                     sw.WriteLine("var query = _" + modelName.ToLower() + "Repository");
                     sw.WriteLine(".GetAll()");
                     sw.WriteLine(".Where(w => w.IsDeleted == false).AsQueryable();");
@@ -97,7 +98,7 @@ namespace GeneratorApp
                     sw.WriteLine("public async Task<" + modelName + "Dto> Update(" + modelName + "Dto " + modelName.ToLower() + ")");
                     sw.WriteLine("{");
                     sw.WriteLine("var result = _objectMapper.Map<Entities.Setup." + modelName + ">(" + modelName.ToLower() + ");");
-                    sw.WriteLine("return _objectMapper.Map<" + modelName + "Dto>(await _" + modelName.ToLower() + "Repository.Update(result));");
+                    sw.WriteLine("return _objectMapper.Map<" + modelName + "Dto>(await _" + modelName.ToLower() + "Repository.UpdateAsync(result));");
                     sw.WriteLine("}");
 
                     sw.WriteLine("");
@@ -109,7 +110,7 @@ namespace GeneratorApp
 
                     sw.WriteLine("public async Task DeleteById(int id)");
                     sw.WriteLine("{");
-                    sw.WriteLine("await _" + modelName.ToLower() + "Repository.Delete(id);");
+                    sw.WriteLine("await _" + modelName.ToLower() + "Repository.DeleteAsync(id);");
                     sw.WriteLine("}");
 
                     sw.WriteLine("");
