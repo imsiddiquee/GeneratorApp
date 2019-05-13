@@ -74,7 +74,7 @@ namespace GeneratorApp
                     sw.WriteLine("try");
                     sw.WriteLine("{");
                     sw.WriteLine("var result = await _"+modelName.ToLower()+ "AppService.GetAll(queryObject);");
-                    sw.WriteLine("return result.Any() ? Ok(result) : StatusCode(StatusCodes.Status204NoContent, result);");
+                    sw.WriteLine("return result.TotalItems > 0 ? Ok(result) : StatusCode(StatusCodes.Status204NoContent, result);");
                     sw.WriteLine("}");
                     sw.WriteLine("catch (Exception ex)");
                     sw.WriteLine("{");
