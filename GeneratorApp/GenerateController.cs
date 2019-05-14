@@ -24,6 +24,8 @@ namespace GeneratorApp
                     sw.WriteLine("using HRIS.Controllers;");
                     sw.WriteLine("using Microsoft.AspNetCore.Http;");
                     sw.WriteLine("using Microsoft.AspNetCore.Mvc;");
+                    sw.WriteLine("using System.Threading.Tasks;");
+                    sw.WriteLine("using HRIS.WebQueryModel;");
                     sw.WriteLine("");
 
                     sw.WriteLine("namespace HRIS.Web.Host.Controllers");
