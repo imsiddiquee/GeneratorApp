@@ -26,16 +26,22 @@ namespace GeneratorApp
                     sw.WriteLine("");
                     sw.WriteLine("namespace HRIS.Setup."+modelName+"");
                     sw.WriteLine("{");
+
+                    sw.WriteLine("[RemoteService(false)]");
                     sw.WriteLine("public interface I"+modelName+"AppService : IApplicationService");
                     sw.WriteLine("{");
-                    sw.WriteLine(""+modelName+"Dto GetById(int id);");
-                    sw.WriteLine("List<"+modelName+"Dto> GetAll();");
-                    sw.WriteLine(""+modelName+"Dto Create("+modelName+"Dto "+modelName.ToLower()+");");
-                    sw.WriteLine(""+modelName+"Dto Update("+modelName+"Dto "+modelName.ToLower()+");");
-                    sw.WriteLine("void Delete("+modelName+"Dto country);");
-                    sw.WriteLine("void DeleteById(int id);");
-                    sw.WriteLine("}");
-                    sw.WriteLine("}");
+
+                    sw.WriteLine("Task<"+modelName+"Dto> GetById(int id);");
+
+                    sw.WriteLine("Task<QueryResult<"+ modelName + "Dto>> GetAll(IQueryObject queryObject);");
+                    sw.WriteLine("Task<"+modelName+"Dto> Create("+modelName+"Dto "+modelName.ToLower()+");");
+                    sw.WriteLine("Task<"+modelName+"Dto> Update("+modelName+"Dto "+modelName.ToLower()+");");
+                    //sw.WriteLine("void Delete("+modelName+"Dto "+ modelName + ");");
+                    sw.WriteLine("Task DeleteById(int id);");
+
+                    sw.WriteLine("}"); //end interface
+
+                    sw.WriteLine("}"); //end namespace
 
                 }
             }
