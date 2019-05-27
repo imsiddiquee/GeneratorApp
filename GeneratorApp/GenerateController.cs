@@ -116,7 +116,7 @@ namespace GeneratorApp
 
                     sw.WriteLine("");
 
-                    sw.WriteLine("[HttpPost]");
+                    sw.WriteLine("[HttpPut]");
                     sw.WriteLine("public async Task<IActionResult> Update([FromBody] " + modelName + "Dto " + modelName.ToLower() + ")");
                     sw.WriteLine("{");
                     sw.WriteLine("if (" + modelName.ToLower() + " == null)");
@@ -167,7 +167,7 @@ namespace GeneratorApp
                     //sw.WriteLine("}");
 
                     sw.WriteLine("[HttpDelete]");
-                    sw.WriteLine("public async Task<IActionResult> DeleteById(int? id)");
+                    sw.WriteLine("public async Task<IActionResult> Delete(int? id)");
                     sw.WriteLine("{");
                     sw.WriteLine("if (!id.HasValue)");
                     sw.WriteLine("{");
